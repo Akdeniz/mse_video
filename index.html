@@ -1,0 +1,38 @@
+
+<html>
+<head>
+    <title>Message ClearKey CENC Event</title>
+    <script src="media-segments.js"></script>
+    <script src="media-source-loader-simple.js"></script>
+    <script>
+
+    const videoConf = streamMedias.video;
+    const audioConf = streamMedias.audio;
+    var video;
+    function runTest() {
+
+        video = document.getElementsByTagName('video')[0];
+
+        let ms = new MediaSourceLoaderSimple(video);
+
+        ms.onready = function() {
+            log("Media source is opened");
+            ms.createSourceBuffer(videoConf, 0);
+            ms.createSourceBuffer(audioConf, 0);
+            video.play();
+        };
+    }
+
+    document.addEventListener("mousedown", function () {
+        log("Media source is opened");
+        runTest();
+    });
+    </script>
+</head>
+<body>
+    <video></video>
+    </div>
+    <br>
+    <div id="log">Click to start!</div>
+</body>
+</html>
